@@ -34,5 +34,7 @@ Try it out using the following steps
 5. Set either a project key (to get all issues from a project), or a custom JQL string, URL encoded
 6. Wait for the request to complete and generate the tree
 
+![Output](tree.png)
+
 ## License
 MIT
