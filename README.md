@@ -18,11 +18,11 @@ Try it out using the following steps
 
 1. Download / clone this repo
 2. Build the JiraTree-Metanodes plugin
-  a. Run cmake on the jiratree-metanodes directory
-  b. Set the cache variable for the VRTree SDK (usually in your Visionary Render install directory, in `data/vrtreesdk`)
-  c. Generate the build scripts (Visual Studio 2015 or above recommended)
-  d. Build the project
-  e. The resulting jiratree.dll can be copied to your VisRen plugins directory, in a subfolder (e.g. `jiratree-metanodes`) with an accompanying `plugin.txt` containing the text `jiratree.dll`
+    a. Run cmake on the jiratree-metanodes directory
+    b. Set the cache variable for the VRTree SDK (usually in your Visionary Render install directory, in `data/vrtreesdk`)
+    c. Generate the build scripts (Visual Studio 2015 or above recommended)
+    d. Build the project
+    e. The resulting jiratree.dll can be copied to your VisRen plugins directory, in a subfolder (e.g. `jiratree-metanodes`) with an accompanying `plugin.txt` containing the text `jiratree.dll`
 3. Copy the jiratree directory to your VisRen plugins directory
 4. Run VisRen - verify plugins loaded in Plugin manager UI
 
