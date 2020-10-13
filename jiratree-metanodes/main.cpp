@@ -2,11 +2,12 @@
 #include <vrtree_api.h>
 using namespace vrtree_cpp;
 
-#include <cassert>
-
 // Implement all of the standard API functions for api versioning, 
 // and other hooks such as logging and progress displays
 VRPLUGIN_API_IMPL;
+
+// before using any of the hooks such as s_logFunc, it should be checked for null
+#define LOG(LEVEL,LOGSTRING) if (s_logFunc) s_logFunc(LEVEL, LOGSTRING);
 
 PLUGIN_ENTRY_POINT const char* VRTREE_APIENTRY VRPName()
 {
@@ -24,13 +25,17 @@ static void registerMetaNodes()
   VRAddPropertyString(jiraConnection, "URL"); // url to jira instance api (e.g. site.atlassian.net/rest/api/2/)
   VRAddPropertyString(jiraConnection, "Username");
   VRAddPropertyString(jiraConnection, "APIToken");
-  assert(VRFinishMetaNode(jiraConnection) == 0);
+  if (VRFinishMetaNode(jiraConnection) != 0) {
+      LOG(LOG_ERROR, "JiraConnection MetaNode Creation Failed.");
+  }
 
   HMeta jiraProject = VRCreateMetaNode("JiraProject");
   VRAddPropertyLinkFilter(jiraProject, "Connection", "JiraConnection");
   VRAddPropertyString(jiraProject, "Key");
   VRAddPropertyString(jiraProject, "JQL"); // JQL to replace default query
-  assert(VRFinishMetaNode(jiraProject) == 0);
+  if (VRFinishMetaNode(jiraProject) != 0) {
+      LOG(LOG_ERROR, "JiraProject MetaNode Creation Failed.");
+  }
 }
 
 // Implement VRPInit to respond to application startup
